@@ -44,12 +44,12 @@ sum(is.na(y_test))
 #dim(X_test)
 #length(y_train)
 
-## Data Visualization
+#----------------------------------Data Visualization----------------------------
 
 
 
-
-#---------------------------------KNN---------------------------------
+#----------------------------------Without Ensembles------------------------------------
+##---------------------------------KNN---------------------------------
 class_train = y_train[,1]
 class_test = y_test[,1]
 
@@ -79,7 +79,7 @@ confusionMatrix(table(knn25_pred , class_test))
 # *** Class 3 and 4 did not have a google accuracy. Best classes are 1 and 6.
 #Accuracy ~ 90%
 
-#---------------------------------Random Forest---------------------------------
+##---------------------------------Random Forest---------------------------------
 #------1st train---------
 data.rf=randomForest(class_train ~ ., data=X_train, ntree=100, mtry=2, importance=TRUE)
 data.rf #Confustion matrix
@@ -115,7 +115,7 @@ confusionMatrix(class_test,X_test$pred_rf2)
 
 #Accuracy ~ 92%
 
-#---------------------------------------SVM-------------------------------------
+##---------------------------------------SVM-------------------------------------
 # Fitting model
 fit <-svm(class_train ~ ., data = X_train)
 summary(fit)
@@ -125,7 +125,8 @@ confusionMatrix(class_test,predicted)
 
 #Accuracy ~ 95%
 
-#--------------------------------Neutral Network--------------------------------
+##--------------------------------Neutral Network--------------------------------
 
 
 
+#----------------------------------With Ensembles--------------------------------
