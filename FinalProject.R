@@ -46,7 +46,70 @@ sum(is.na(y_test))
 
 #----------------------------------Data Visualization----------------------------
 
+## PIE CHART TO SHOW DISTRIBUTION OF ALL SIX ACTIVITIES IN TRAINING RESULTS
 
+df_activity <- y_train
+
+df_activity <- df_activity %>%
+  mutate(Activity = case_when(V1 == 1 ~ 'WALKING',
+                              V1 == 2 ~ 'WALKING_UPSTAIRS',
+                              V1 == 3 ~ 'WALKING_DOWNSTAIRS',
+                              V1 == 4 ~ 'SITTING',
+                              V1 == 5 ~ 'STANDING',
+                              V1 == 6 ~ 'LAYING'))
+
+
+theme_set(theme_classic())
+
+pie <- ggplot(df_activity, aes(x = "", fill = factor(Activity))) + 
+  geom_bar(width = 1) +
+  theme(axis.line = element_blank(), 
+        plot.title = element_text(hjust=0.5)) + 
+  labs(fill="Activity", 
+       x=NULL, 
+       y=NULL, 
+       title="Pie Chart of Activity - TRAINING", 
+       caption="Source: y_train")
+
+pie + coord_polar(theta = "y", start=0)
+
+#***********************************************************************
+# To check tBodyAcc-max()-XYZ values are between -1 and +1
+#***********************************************************************
+
+df_filtered_features <- features %>%
+                        mutate(Col_Names = paste("V",features$V1, sep = "")) %>%
+                        filter(str_detect(V2, pattern = "max()")) %>%
+                        select(Col_Names, V2)
+  
+X_train_max <- X_train %>%
+  select(c(df_filtered_features$Col_Names))
+
+ggplot(X_train_max, aes(x=(1:7352))) + 
+  geom_point(mapping = aes(y = X_train_max$V10), color = 'blue') +
+  geom_point(mapping = aes(y = X_train_max$V11), color = 'black') +
+  geom_point(mapping = aes(y = X_train_max$V12), color = 'red') +
+  labs(x = "Observations",y="Values" , title="tBodyAcc-max()-XYZ value plot")
+
+#***********************************************************************
+# To check all angle() values are between -1 and +1
+#***********************************************************************
+df_filtered_features_2 <- features %>%
+  mutate(Col_Names = paste("V",features$V1, sep = "")) %>%
+  filter(str_detect(V2, pattern = "angle()")) %>%
+  select(Col_Names, V2)
+
+X_train_angle <- X_train %>%
+  select(c(df_filtered_features_2$Col_Names))
+
+ggplot(X_train_angle, aes(x=(1:7352))) + 
+  geom_point(mapping = aes(y = X_train_angle$V555), color = 'blue') +
+  geom_point(mapping = aes(y = X_train_angle$V556), color = 'black') +
+  geom_point(mapping = aes(y = X_train_angle$V557), color = 'red') +
+  geom_point(mapping = aes(y = X_train_angle$V558), color = 'green') +
+  geom_point(mapping = aes(y = X_train_angle$V559), color = 'magenta') +
+  geom_point(mapping = aes(y = X_train_angle$V560), color = 'yellow') +
+  labs(x = "Observations", y="Values" , title="angle() values plot")
 
 #----------------------------------Without Ensembles------------------------------------
 ##---------------------------------KNN---------------------------------
