@@ -142,6 +142,9 @@ sum(is.na(valid.df))
 res_train <- cor(X_train)
 res_test <- cor(X_test)
 
+#Check imbalance of data
+hist(train.df$y)
+
 #----------------------------------Without Ensembles------------------------------------
 ##---------------------------------KNN---------------------------------
 # *****Need to try rectangular, triangular, etc.
