@@ -30,6 +30,7 @@ library(h2o)
 
 ##---------------------------------IMPORT DATA---------------------------------
 #Original dataset has splitted by 70% training and 30% testing
+
 X_train<-read.table("./UCI HAR Dataset/train/X_train.txt")
 y_train<-read.table("./UCI HAR Dataset/train/y_train.txt")
 X_test<-read.table("./UCI HAR Dataset/test/X_test.txt")
