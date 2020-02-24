@@ -150,25 +150,25 @@ hist(train.df$y)
 # *****Need to try rectangular, triangular, etc.
 #------1st train---------
 ## A 5-nearest neighbors model with no normalization
-knn5.pred <- knn(train = X_train, test = X_test, cl = class_train, k=5)
+knn5.pred <- knn(train = train.df, test = valid.df, cl = train.df$y, k=5)
 #NROW(knn5_pred) # compare size with y_test
 ##Evaluation KNN_5
 table(knn5.pred , class_test)
-confusionMatrix(table(knn5.pred , class_test))
+confusionMatrix(table(knn5.pred , valid.df$y))
 
 #------2nd train---------
 ## A 10-nearest neighbors model with no normalization
-knn10.pred <- knn(train = X_train, test = X_test, cl = class_train, k=10)
+knn10.pred <- knn(train = train.df, test = valid.df, cl = train.df$y, k=10)
 ##Evaluation KNN_5
 table(knn10.pred , class_test)
-confusionMatrix(table(knn10.pred , class_test))
+confusionMatrix(table(knn10.pred , valid.df$y))
 
 #------3rd train---------
 ## A 25-nearest neighbors model with no normalization
-knn25.pred <- knn(train = X_train, test = X_test, cl = class_train, k=25)
+knn25.pred <- knn(train = train.df, test = valid.df, cl = train.df$y, k=25)
 ##Evaluation KNN_25
 table(knn10.pred , class_test)
-confusionMatrix(table(knn25.pred , class_test))
+confusionMatrix(table(knn25.pred , valid.df$y))
 
 #------------------------
 # *** Not such different in change in K-neighbor 5/10/25
