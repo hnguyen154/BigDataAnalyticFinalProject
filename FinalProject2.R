@@ -320,7 +320,7 @@ m1 <- h2o.deeplearning(
   ## early stopping
   #activation="Rectifier",      ## default
   #hidden=c(200,200),           ## default: 2 hidden layers, 200 neurons each  
-  epochs = 1                    ## one pass over the training data
+  epochs = 1000                 ## one pass over the training data
 )
 
 summary(m1)
