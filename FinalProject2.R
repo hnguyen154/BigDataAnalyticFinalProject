@@ -169,12 +169,12 @@ knn25.pred <- knn(train = train.df, test = valid.df, cl = train.df$y, k=25)
 ##Evaluation KNN_25
 table(knn10.pred , class_test)
 confusionMatrix(table(knn25.pred , valid.df$y))
-
+plot(knn25.pred)
 #------------------------
 # *** Not such different in change in K-neighbor 5/10/25
 # *** Class 3 and 4 did not have a google accuracy. Best classes are 1 and 6.
 
-#Accuracy ~ 90%
+#Accuracy ~ 96%
 
 ##---------------------------------Random Forest---------------------------------
 #------1st train---------
